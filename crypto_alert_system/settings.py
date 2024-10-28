@@ -31,9 +31,7 @@ DEBUG = os.getenv('DEBUG')
 ALLOWED_HOSTS = [
     '*',
     'localhost',
-    '.vercel.app',
     '127.0.0.1',
-    ".now.sh"
 ]
 
 
@@ -51,15 +49,14 @@ INSTALLED_APPS = [
     'alerts',
     'anymail',
     'cryptocurrency',
-    "corsheaders",
-    'example',
-
+    "corsheaders"
 
 ]
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -153,8 +150,6 @@ CORS_ORIGIN_WHITELIST=[CRYPTO_APP_DOMAIN]
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_URL = '/static/'
-
 # Email backend settings for sending alerts
 EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
 ANYMAIL = {
@@ -189,3 +184,13 @@ LOGGING = {
         'level': 'WARNING',
     },
 }
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage' 
+
+STATIC_URL = 'static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static")
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
