@@ -30,7 +30,10 @@ DEBUG = os.getenv('DEBUG')
 
 ALLOWED_HOSTS = [
     '*',
-    'localhost'
+    'localhost',
+    '.vercel.app',
+    '127.0.0.1',
+    ".now.sh"
 ]
 
 
@@ -48,7 +51,8 @@ INSTALLED_APPS = [
     'alerts',
     'anymail',
     'cryptocurrency',
-    "corsheaders"
+    "corsheaders",
+    'example',
 
 
 ]
